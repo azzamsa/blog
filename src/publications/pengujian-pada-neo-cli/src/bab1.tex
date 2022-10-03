@@ -1,0 +1,176 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BAB 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mychapter{1}{BAB 1 PENDAHULUAN}
+
+% BAB I PENDAHULUAN
+% BAB II PROFIL OBYEK PKL .
+% BAB III TINJAUAN PUSTAKA
+% BAB IV METODOLOGI
+% BAB V HASIL DAN PEMBAHASAN
+% BAB VI BAB VI PENUTUP
+
+\section{Latar Belakang}
+% 1. Objek penelitian
+% a. mengapa testing ?
+
+% obyek penelitian (O)
+Saat ini perangkat lunak telah digunakan secara masif oleh
+manusia. Semua bidang dalam setiap aspek kehidupan hampir seluruhnya
+membutuhkan perangkat lunak. Mulai dari transportasi, kesehatan,
+pendidikan, tenaga pembangkit listrik dan berbagai macam bidang-bidang
+lainnya. Meningkatnya penggunaan perangkat lunak berpengaruh secara
+langsung pada kebutuhan infrastruktur teknologi informasi. Mahal dan
+sulitnya pemeliharaan infrastruktur teknologi informasi membuat
+penyedia jasa infrastruktur tekologi informasi kian menjamur.
+BiznetGio Nusantara merupakan salah satu diantaranya. BiznetGio
+Nusantara menyediakan jasa penyewaan infrastruktur teknologi informasi
+bernama \emph{NeoCloud}. \emph{NeoCloud} merupakan infrastruktur
+\emph{cloud} berbasis \emph{OpenStack}. \emph{NeoCloud} melayani
+puluhan perusahaan besar di Indonesia sehingga kegagalan sistem pada
+\emph{NeoCloud} merupakan hal yang sangat fatal. Kegagalan perangkat
+lunak dapat menyebabkan kerugian materi hingga kehilangan nyawa
+\parencite{wong2009role}. Akan tetapi, kegagalan perangkat lunak dapat
+diantisipasi dengan melakukan prosedur pengujian pada proses
+pengembangan perangkat lunak. Pengujian dapat memprediksi kegagalan
+lebih dini dan menghasilkan perangkat lunak yang berkualitas
+\parencite{burnstein2006practical}.
+
+Maka untuk mengantisipasi kegagalan dan menjadikan \emph{NeoCloud}
+perangkat lunak yang berkualitas tinggi, dilakukanlah pengujian pada
+\emph{NeoCloud}. Pada praktik kerja lapangan ini pengujian dilakukan
+pada \emph{neo-cli}. \emph{Neo-cli} merupakan perangkat lunak bagian
+dari \emph{NeoCloud} yang digunakan oleh pengguna \emph{NeoCloud}
+untuk memudahkan pengaturan infrastruktur \emph{cloud} yang mereka miliki.
+Pengujian yang akan dibangun pada
+\emph{neo-cli} dilakukan pada beberapa tahapan, yaitu pada tahapan
+\emph{unit} dan \emph{integration}. Pemilihan batas tahapan ini
+ditentukan oleh pembimbing lapangan dengan beberapa
+pertimbangan. Salah satunya adalah waktu praktik kerja lapangan yang
+terbatas. Sedangkan metode pengujian yang digunakan adalah
+\emph{white-box testing} dan \emph{black-box testing}. Metode
+\emph{white-box testing} tidak dapat menemukan kebutuhan yang belum
+diimplementasikan \parencite{dijkstra1970notes}. Hal ini dapat
+diselesaikan dengan penggunaan metode \emph{black-box
+testing}. Begitu juga dengan kekurangan metode \emph{black-box
+testing} yang dapat menghasilkan \emph{test-case} yang tidak tepat dan
+tidak dapat menemukan bagian yang belum diuji
+\parencite{savenkov2008become}. Kelemahan pada metode
+\emph{black-box testing} ini dapat diselesaikan dengan menggunakan
+metode \emph{white-box testing}. Oleh karena itu, pada laporan ini
+kedua metode tersebut digunakan. Pengujian semua \emph{path} atau
+\emph{rigorous testing} pada proses \emph{white-box testing} tidak
+mungkin dilakukan sehingga digunakan teknik \emph{basis path
+testing} untuk menentukan \emph{path} yang akan diuji
+\parencite{gregory2007path}. Begitu juga pada proses \emph{black-box
+  testing}. Pengujian semua kemungkinan \emph{input} tidak dapat
+dilakukan sehingga digunakan teknik \emph{equivalence partitioning} untuk
+menentukan \emph{valid input} dan \emph{invalid input} yang akan
+digunakan dan penggunaan teknik \emph{boundary value
+  analysis} untuk memilih \emph{input} yang ada pada nilai-nilai
+\emph{boundary}, karena nilai-nilai pada bagian tersebut memiliki
+kemungkinan galat yang besar \parencite{presman2010software}. Proses
+pengujian menyita banyak waktu \parencite{brooks1995mythical} sehingga
+\emph{automated testing} juga digunakan pada laporan ini untuk
+mempercepat proses pengujian.
+
+Pada laporan ini pengujian pada \emph{neo-cli} akan dibangun pada
+tahapan \emph{unit} dan \emph{integration} dengan menggunakan kedua
+metode \emph{white-box testing} beserta \emph{black-box
+  testing}. Pada proses \emph{white-box testing} akan digunakan teknik
+\emph{basis path testing}. Sedangkan pada proses \emph{black-box
+  testing} akan digunakan teknik \emph{equivalence partitioning} dan
+\emph{boundary value analysis}. \emph{Automated testing} juga
+digunakan pada pengembangan pengujian \emph{neo-cli} untuk mempercepat
+proses pengujian.
+
+\section{Rumusan Masalah}
+\begin{enumerate}
+\item Bagaimana perancangan dan implementasi pengujian dengan teknik
+  \emph{basis path testing} pada perangkat lunak \emph{neo-cli} ?
+\item Bagaimana perancangan dan implementasi pengujian dengan teknik
+  \emph{equivalence partitioning} dan \emph{boundary value analysis}
+  pada perangkat lunak \emph{neo-cli} ?
+\end{enumerate}
+
+\section{Tujuan}
+
+\begin{enumerate}
+\item Merancang dan mengimplementasikan pengujian dengan teknik
+  \emph{basis path testing} pada perangkat lunak \emph{neo-cli}.
+\item Merancang dan mengimplementasikan pengujian dengan teknik
+  \emph{equivalence partitioning} dan \emph{boundary value analysis}
+  pada perangangkat lunak \emph{neo-cli}.
+\end{enumerate}
+
+
+\section{Manfaat}
+
+Pembangunan pengujian pada perangkat lunak \emph{neo-cli}
+diharapkan dapat memberikan kemudahan bagi pengembang untuk menemukan
+\emph{bug}. Baik \emph{bug} yang tersebunyi maupun yang muncul karena
+adanya penambahan fitur. Selain itu, laporan ini diharapkan memberikan
+informasi yang menjelaskan tentang proses pengujian
+dalam perangkat lunak. Baik dengan pendekatan \emph{black-box} atau
+pun \emph{black-box} dan teknik-teknik yang digunakan di dalamnya.
+
+\section{Batasan Masalah}
+
+\begin{enumerate}
+\item Beberapa modul tidak memiliki dukungan untuk proses pengujian. Seperti
+  modul \emph{ncurses}
+\item \emph{Unit} yang berinteraksi dengan dunia luar tidak di uji
+  secara \emph{end-to-end} pada proses \emph{integration testing}.
+\end{enumerate}
+
+
+\section{Sistematika Pembahasan}
+\noindent
+\textbf{BAB I : PENDAHULUAN}
+
+Bab ini menjelaskan tentang latar belakang masalah, rumusan masalah,
+tujuan, manfaat, batasan masalah, dan sistematika pembahasan.\par\null\par
+
+\noindent
+\textbf{BAB II : PROFIL OBYEK PKL}
+
+Bab ini menjelaskan tentang sejarah perusahaan, visi dan misi
+perusahaan serta struktur organisasi perusahaan. \par\null\par
+
+\noindent
+\textbf{BAB III : TINJAUAN PUSTAKA}
+
+Bab ini menjelaskan dasar teori-teori yang digunakan untuk melakukan
+pengujian pada suatu perangkat lunak. Di dalamnya juga terdapat
+penjelasan teknologi yang digunakan untuk membangun
+pengujian pada perangkat lunak. \par\null\par
+
+\noindent
+\textbf{BAB IV : METODOLOGI}
+
+Bab ini menjelaskan metode-metode yang digunakan selama pengujian. Di
+dalamnya terdapat alur seperti proses analisis kebutuhan pengujian,
+perancangan dan implementasi kasus uji, dan penarikan kesimpulan.
+\par\null\par
+
+\noindent
+\textbf{BAB V : HASIL DAN PEMBAHASAN}
+
+Bab ini menjelaskan hasil dan pembahasan pengujian. Hasil dan
+pembahasan tersebut mencangkup langkah-langkah seperti analisis
+kebutuhan pengujian, dan perencanaan dan implementasi kasus uji \par\null\par
+
+\newpage
+
+\noindent
+\textbf{BAB VI : PENUTUP}
+
+Bab ini menjelaskan kesimpulan selama proses pengujian, saran untuk pengujian
+selanjutnya dan penjelasan terkait keberlanjutan pengujian yang dibangun.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "pkl"
+%%% End:

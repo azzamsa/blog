@@ -1,0 +1,166 @@
+= Testing  102: A Brief of whole pieces
+Azzam S.A
+:imagesdir: images
+:sectids!:
+:experimental:
+
+== Goals
+* Why / What / How
+* Best Practice
+
+== Why
+* Confidence
+* Financial
+* Beter Code
+
+== !
+[.text-center]
+--
+*Didn't Everyone Know it?*
+
+Doing it wrong (probably?)
+--
+
+== !
+[.text-center]
+*What?*
+
+
+== Testing
+
+[source,python]
+----
+include::listings/basic.py[]
+----
+
+== !
+[.text-center]
+*Automated vs Manual*
+
+== Unit vs Integation vs E2e
+image::testing-pyramid.png[,800,800,role=crux]
+[.credit]
+@kentcdodds
+
+== Monkey Patch
+[source,python]
+----
+include::listings/monkey_patch.py[]
+----
+
+[.compact]
+== Test Doubles: Stub
+
+[source,python]
+----
+include::listings/stub.py[]
+----
+
+[.compact]
+== Test Doubles: Mock
+
+[source,python]
+----
+include::listings/mock.py[]
+----
+
+== !
+[.text-center]
+*How*
+
+
+[.compact]
+== Unit
+
+[source,python]
+----
+include::listings/unit.py[]
+----
+
+[.compact]
+== Integration
+
+[source,python]
+----
+include::listings/integration.py[]
+----
+
+[.compact]
+== End to End
+
+[source,python]
+----
+include::listings/e2e.py[]
+----
+
+== !
+image::test.png[,800,800,role=crux]
+
+== Where to Start
+* Most upset part
+* unit -> integration
+* End to End
+* CI
+
+== !
+[.text-center]
+*Tips*
+
+== !
+[.text-center]
+[.red]
+*Avoid Implementation Details*
+
+image::steak.gif[,697,299,role=crux,credit=""]
+[.credit]
+giphy
+
+== !
+[.text-center]
+[.fuchsia]
+*100% code coverage?*
+
+image::coverage.png[,697,299,role=crux,credit=""]
+[.credit]
+Aaron Abramov
+
+
+== 100% code coverage?
+
+* Testing *any* code
+* Doing Implementation detail
+* Chaos, when refactoring
+
+== Mostly Integrations
+[source,python]
+----
+include::listings/umbrella.py[]
+----
+
+== Mostly Integrations
+image::umbrella.gif[,297,299,role=crux,credit=""]
+[.credit]
+giphy
+
+== !
+[.text-center]
+*Avoid Test Repetation*
+
+
+
+[.closing.segue.badge-right]
+== Thank You!
+
+[horizontal.contact]
+twitter:: @azzamsyawqi
+www:: azzamsa.com
+
+
+[.inverse.subject]
+== !
+image::company-logo-inverse.svg[,422,96,role=logo crux]
+
+== Credits
+* The Testing Garden -- Kent C. Dodds
+* Establishing testing patterns with software design principles -- Aaron Abramov
+

@@ -1,0 +1,37 @@
+\begin{longtable}[c]{|l|l|p{2.5cm}|p{7cm}|}
+  \caption{Daftar \emph{method} yang akan diuji} \label{tab:method-yang-diuji} \\
+  %% HEADER
+  \hline
+  \textbf{Kode} & \textbf{Modul} & \textbf{\emph{Method}} & \textbf{Deskripsi} \\
+  \hline
+  \endhead % <-- on every page
+  NC1 & attach & attach & Sistem menjalankan perintah
+                                       pada \emph{remote virtual machine}\\\hline
+                                       %
+  NC2 & create & do\_create & Sistem membuat \emph{virtual machine} \\\hline
+                                  %
+  NC3 & auth & do\_login & Sistem mengautentikasi pengguna \\\hline
+  %
+  NC4 & auth & do\_logout & Sistem menghapus data autentikasi \emph{user}\\\hline
+  %
+  NC5 & ls & get\_stack\_list & Sistem menampilkan daftar \emph{stack} \\\hline
+                        %
+  NC6 & ls & list\_network & Sistem menampilkan daftar \emph{networks} \\\hline
+                           %
+  NC7 & vm & do\_delete & Sistem menghapus \emph{virtual machine}\\\hline
+                            %
+  NC8 & orch & do\_delete & Sistem menghapus \emph{stack}\\\hline
+                                      %
+  NC9 & orch & do\_update & Sistem memperbarui \emph{virtual machine}\\\hline
+                               %
+  NC10 & cli & show\_help & Sistem menampilkan pesan bantuan \\\hline
+  %
+  NC11 & cli & show\_version & Sistem dapat menampilkan versi perangkat lunak \\\hline
+  %
+\end{longtable}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "pkl"
+%%% End:

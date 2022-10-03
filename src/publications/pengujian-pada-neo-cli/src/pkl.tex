@@ -1,0 +1,360 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Latex file abstraction to pkl class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{pkl}
+
+% ------------------------------------------------------------
+% Add your own needed package here
+% ------------------------------------------------------------
+\usepackage[titles]{tocloft} % add prefix for images and tables
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+\usepackage{hyperref} % add hyperlink to the document
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+\usepackage[labelfont=bf]{caption} % Bold Face for image description
+\usepackage{subfig} % images side by side
+
+\usepackage{float} % force placing figure here
+\usepackage{csquotes}
+\usepackage{enumitem} % paragraph inside itemize
+
+\renewcommand*{\arraystretch}{1.8} % allow space in math formula
+
+% -----------------------------------------------------------------
+% longtable
+% -----------------------------------------------------------------
+
+\usepackage{longtable} % add table
+% itemiize inside longtable
+%\usepackage{array,booktabs,enumitem}% http://ctan.org/pkg/{array,booktabs,enumitem}
+% \newcolumntype{P}[1]{>{\endgraf\vspace*{-\baselineskip}}p{#1}}
+
+% avoid overfull in longtable
+% TODO overfull still occured
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% -----------------------------------------------------------------
+% Custom source code style
+% -----------------------------------------------------------------
+\usepackage[newfloat,chapter]{minted}
+
+% allow caption and label in minted
+% https://tex.stackexchange.com/questions/254044/caption-and-label-on-minted-code
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Tabel Kode}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,minted,skins,breakable}
+\newtcblisting{ignasicblock}[1][]{%
+  breakable,
+  colback=white,
+  colframe=black,
+  colbacktitle=white,
+  sharp corners,
+  enhanced,
+  listing engine=minted,
+  listing only,
+  left=10mm,
+  title=Source Code,
+  halign title=center,
+  overlay={\draw[line width=.5mm] ([xshift=8mm]frame.south west)
+    -- ([xshift=8mm]frame.north west);
+    \node[right] at (title.west) {No};},
+  minted style=colorful,
+  minted language=Python,
+  minted options={%
+    linenos=true,
+    fontsize=\footnotesize,
+    numbersep=6mm,
+    texcl=true,
+    breaklines=true,
+    autogobble=true},
+  coltitle=black,
+  #1
+}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% -----------------------------------------------------------------
+% Font style
+% -----------------------------------------------------------------
+\usepackage{fontspec} % use custom font
+
+\setmainfont[Path=/home/azzamsya/.local/share/fonts/font-windows/calibri/,
+    BoldItalicFont=calibriz.ttf,
+    BoldFont      =calibrib.ttf,
+    ItalicFont    =calibrii.ttf]{calibri.ttf} % use original calibri font
+
+\setmonofont[Path=/home/azzamsya/.local/share/fonts/font-windows/courier-new/,
+    BoldItalicFont=courbi.ttf,
+    BoldFont      =courbd.ttf,
+    ItalicFont    =couri.ttf]{cour.ttf} % use original courir new font
+
+
+% -----------------------------------------------------------------
+% Debungging configuration
+% -----------------------------------------------------------------
+%\overfullrule=2cm % show overfull
+%\usepackage{showframe} % show frame margin
+%\renewcommand\ShowFrameLinethickness{0.25pt}
+%\renewcommand*\ShowFrameColor{\color{red}}
+
+
+% -----------------------------------------------------------------
+% Bibliography style
+% -----------------------------------------------------------------
+\input{hangilastyle}
+\addbibresource{daftar-pustaka.bib}
+
+\renewcommand*{\finalnamedelim}{% % change and to &
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\&\space}
+
+\newcommand{\cmmnt}[1]{\ignorespaces} % remove space in generated
+% documents if we put comments in source
+
+% -----------------------------------------------------------------
+% Fill your data here
+% -----------------------------------------------------------------
+% title
+\titlepkl{PEMBANGUNAN PENGUJIAN PADA NEO-CLI (AGNOSTIC ORCHESTRATION
+  TOOLS FOR CLOUD INFRASTRUCTURE)}
+% personal data
+\fullname{Azzam Syawqi Aziz}
+\idnum{155150207111132}
+\approvaldate{11}
+\degree{N/A}
+\yearsubmit{2018}
+\laboratory{Rekayasa Perangkat Lunak}
+\pklplacetype{PT}
+\pklstartdate{1 Juli}
+\pklenddate{31 Agustus 2018}
+\pklplace{Biznet Gio Nusantara}
+\dept{TEKNIK INFORMATIKA}
+\faculty{FAKULTAS ILMU KOMPUTER}
+\university{universitas brawijaya}
+\city{malang}
+% supervisor data
+\firstsupervisor{Tri Astoto Kurniawan, S.T, M.T, Ph.D }
+\firstsupervisornip{19710518 200312 1 001}
+\secondsupervisor{Tri Astoto Kurniawan, S.T, M.T, Ph.D }
+\secondsupervisornip{19710518 200312 1 001}
+\thirdsupervisor{EKA TRESNA IRAWAN}
+\thirdsupervisornip{}
+
+
+% -----------------------------------------------------------------
+% And so it begins
+% -----------------------------------------------------------------
+\begin{document}
+
+% -----------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------
+\cover
+
+% -----------------------------------------------------------------
+% Approval Page
+% -----------------------------------------------------------------
+\approvalpage
+
+% -----------------------------------------------------------------
+% Approval Page Lapangan
+% -----------------------------------------------------------------
+% \approvalpagelapangan
+
+
+%-----------------------------------------------------------------
+% PERNYATAAN ORISINALITAS
+%-----------------------------------------------------------------
+{\orisinalitas
+
+  Saya menyatakan dengan sebenar-benarnya bahwa sepanjang pengetahuan
+  saya, di dalam laporan PKL ini tidak terdapat karya ilmiah yang
+  pernah diajukan oleh orang lain dalam kegiatan akademik di suatu
+  perguruan tinggi, dan tidak terdapat karya atau pendapat yang pernah
+  ditulis atau diterbitkan oleh orang lain, kecuali yang secara
+  tertulis disitasi dalam naskah ini dan disebutkan dalam daftar
+  pustaka.
+
+  Apabila ternyata didalam laporan PKL ini terbukti terdapat
+  unsur-unsur plagiasi, saya bersedia PKL ini digugurkan, serta
+  diproses sesuai dengan peraturan perundang-undangan yang berlaku (UU
+  No. 20 Tahun 2003, Pasal 25 ayat 2 dan Pasal 70).
+  \vspace{1.5cm}
+
+  \noindent
+  % \hspace*{8cm}Malang, 31 Agustus 2018 \vspace{1.5cm} \\
+  \hspace*{8cm}Malang, 31 Agustus 2018  \\
+  \hspace*{8cm}Ketua Kelompok,  \vspace{1.5cm} \\
+
+  \hspace*{6.8cm}\underline{Azzam Syawqi Aziz} \\
+  \hspace*{8cm}NIM : 155150207111132
+
+}
+
+%-----------------------------------------------------------------
+% Disini awal masukan untuk Prakata
+%-----------------------------------------------------------------
+{\preface
+
+  Puji syukur kehadirat Allah SWT yang telah melimpahkan
+  rahmat, taufik dan hidayah-Nya sehingga laporan PKL yang berjudul
+  ``PEMBANGUNAN PENGUJIAN PADA NEO-CLI (AGNOSTIC
+  ORCHESTRATION TOOLS FOR CLOUD INFRASTRUCTURE)'' ini dapat terselesaikan.
+
+  \begin{enumerate}
+  \item{Bapak Tri Astoto Kurniawan, S.T, M.T, Ph.D selaku dosen pembimbing PKL
+      yang telah dengan sabar membimbing dan mengarahkan penulis
+      sehingga dapat menyelesaikan laporan ini.}
+  \item{Bapak Eka Tresna Irawan selalu pembimbing PKL lapangan yang
+      telah memberikan banyak ilmu untuk penulis jadikan bekal pada
+      penulisan laporan ini.}
+  \item{Bapak-bapak pengembang kakas-kakas bantu yang digunakan dalam
+      laporan ini. Terimakasih telah menjawab pertanyaan-pertanyaan
+      penulis. Hal ini secara tidak langsung mendukung kemudahan
+      penyelesaian laporan ini.}
+  \item{Ayahanda dan Ibunda dan seluruh keluarga besar atas segala
+      nasehat, kasih sayang, perhatian dan kesabarannya di dalam
+      membesarkan dan mendidik penulis, serta yang senantiasa tiada
+      henti-hentinya memberikan doa dan semangat demi terselesaikannya
+      laporan ini.}
+  \item{Seluruh civitas akademika Teknik Informatika Universitas
+      Brawijaya yang telah banyak memberi bantuan dan dukungan selama
+      penyelesaian laporan PKL ini.}
+  \end{enumerate}
+
+  Penulis menyadari bahwa dalam penyusunan laporan ini masih banyak kekurangan,
+  sehingga saran dan kritik yang membangun sangat penulis harapkan. Akhir kata penulis
+  berharap PKL ini dapat membawa manfaat bagi semua pihak yang menggunakannya.
+
+  \vspace{0.8cm}
+
+
+  \noindent
+  % \hspace*{8cm}Malang, 31 Agustus 2018 \vspace{1.5cm} \\
+  \hspace*{8cm}Malang, 31 Agustus 2018 \\
+  \hspace*{8cm}Ketua Kelompok, \vspace{1.5cm} \\
+
+  \hspace*{6.8cm}Azzam Syawqi Aziz \\
+  \hspace*{8cm}Email: azzamsa@student.ub.ac.id
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK INDONESIA
+% -----------------------------------------------------------------
+{\abstractind
+
+  Pengujian telah menjadi bagian penting dalam proses pembangunan
+  perangkat lunak. Penggunaan perangkat lunak dalam aspek-aspek
+  penting kehidupan mendorong para pengembang perangkat lunak untuk
+  menghasilkan perangkat lunak dengan kemungkinan galat yang
+  rendah. Oleh karena itu, pengujian menjadi proses penting untuk
+  menghasilkan perangkat lunak dengan kriteria tersebut. Pada laporan
+  ini, pengujian dilakukan pada tahapan \emph{unit} dan
+  \emph{integration} dengan mengunakan metode pengujian
+  \emph{white-box} dan \emph{black-box}. Pengujian \emph{white-box}
+  dilakukan dengan teknik \emph{basis path testing}. \emph{Basis path
+    testing} dilakukan untuk mendapatkan kasus uji pada tahapan
+  \emph{unit} dan \emph{integration}. Kasus uji pada proses pengujian
+  \emph{white-box} didapatkan mula-mula dengan menggambarkan
+  \emph{flow graph}, menghitung \emph{cyclomatic complexity} lalu
+  menentukan \emph{independent path}. Dari \emph{idependent path} yang
+  didapatkan dibangun kasus uji dengan melewati setiap \emph{path}
+  yang ditemukan. Pada proses pengujian \emph{black-box} kasus uji
+  didapatkan dengan teknik \emph{equivalence partitioning} dan
+  \emph{boundary value analysis}. \emph{Equivalence partitioning} akan
+  membagi data masukan yang digunakan untuk pengujian menjadi
+  \emph{valid} dan \emph{invalid class}. Dari kedua kelas tersebut,
+  diambil tiga data masukan. Sedangkan \emph{boundary value analysis}
+  menentukan data pengujian dari nilai-nilai yang berada pada daerah
+  pinggir. Laporan ini telah membahas proses pembangunan pengujian
+  pada perangkat lunak \emph{neo-cli} yang berperan penting dalam
+  operasional perusahaan. Oleh karena itu, pengujian dilakukan agar
+  \emph{neo-cli} memiliki kemungkinan galat yang rendah.
+
+  \emph{Kata kunci}: pengujian, \emph{basis path testing},
+  \emph{equation partitioning}, \emph{boundary value analysis}
+
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK ENGLSIH
+% -----------------------------------------------------------------
+{\abstracteng
+
+  \emph{Testing has become an important part of software development
+    process. Software usage in imprtant life aspect encourages
+    software developers to produce software with low possible errors.
+    Therefore, testing is an important process to produce software
+    with these criteria. In this report, testing is carried out at the
+    stages of unit and integration by using white-box testing method
+    and black-box testing method. White-box testing performed with
+    basis path testing. Basis path testing performed at unit and
+    integration level. Test case in the white-box testing process was
+    obtained initially by draw the flow graph, calculates the
+    cyclomatic complexity then specify independent path. Test case
+    then built to pass each resulted path from previous step. In the
+    black-box testing process, test case obtained with the equivalence
+    partitioning and boundary value analysis technique. Equivalence
+    partitioning will divide the input data for testing usage into
+    valid andinvalid class. Of the two classes, taken three input
+    data. Whereas boundary value analysis technique determine test
+    data from values in the edge area. This report has discussed the
+    testing development process on neo-cli software which plays an
+    important role in company operations. Therefore, testing performed
+    on neo-cli to lower its possibility of error.}
+
+  \emph{Keyword}: \emph{testing}, \emph{basis path testing},
+  \emph{equation partitioning}, \emph{boundary value analysis}
+}
+
+% -----------------------------------------------------------------
+% TOCS
+% -----------------------------------------------------------------
+\tableofcontents
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+% TODO \listofappendices
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+
+% -----------------------------------------------------------------
+% Chapter
+% -----------------------------------------------------------------
+% change numbering to arabic from bab1
+\selectlanguage{bahasa}\clearpage\pagenumbering{arabic}\setcounter{page}{1}
+
+\include{bab1}
+\include{bab2}
+\include{bab3}
+\include{bab4}
+\include{bab5}
+\include{bab6}
+
+% -----------------------------------------------------------------
+% Bibliography
+% -----------------------------------------------------------------
+% -- \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\emergencystretch=1em
+\printbibliography[title={DAFTAR PUSTAKA}]
+
+\include{lampiran}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,9 @@
+//==========  Globals ==========//
+
+.link {
+  @apply no-underline transition-all duration-300 ease-out;
+
+  &:hover {
+    @apply text-blue-700;
+  }
+}

@@ -1,0 +1,406 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Latex file abstraction to skripsi class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{skripsi}
+
+% ------------------------------------------------------------
+% Add your own needed package here
+% ------------------------------------------------------------
+% Needed to add prefix for images and tables
+\usepackage[titles]{tocloft}
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+% Needed to add hyperlink to the document
+\usepackage{hyperref}
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+% Needed to add caption
+% - labelfont: caption label
+% - font: caption content
+% - labelsep: caption separator
+\usepackage[center,labelfont=bf,font=bf,labelsep=space]{caption}
+% Needed to add ability to customize subcaption
+\usepackage{subcaption}
+
+% Needed to force placing figure here
+\usepackage{float}
+\usepackage{csquotes}
+% Needed to put paragraph inside itemize
+\usepackage{enumitem}
+% Needed to add ability for sub-sub-subsection
+\usepackage{titlesec}
+
+% Needed to make `\paragraph' behave like `\subsubsubsection'
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Needed to remove orphan and widowG
+% FIXME didn't work
+\usepackage[all]{nowidow}
+
+% Needed to avoid overfull in table
+\usepackage{ragged2e}
+\usepackage{longtable, makecell}
+\newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+\renewcommand\theadfont{\small\bfseries}
+\setcellgapes{3pt}
+
+% Needed to use <x>cm in table size
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+% -----------------------------------------------------------------
+% Custom source code style
+% -----------------------------------------------------------------
+\usepackage{listings}
+\usepackage[newfloat,chapter]{minted}
+
+% allow caption and label in minted
+% https://tex.stackexchange.com/questions/254044/caption-and-label-on-minted-code
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Tabel Kode}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listings,minted,skins,breakable}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\newtcblisting{ignasicblock}[1][]{%
+  breakable,
+  colback=white,
+  colframe=black,
+  colbacktitle=white,
+  sharp corners,
+  enhanced,
+  listing engine=minted,
+  listing only,
+  left=10mm,
+  title=Source Code,
+  halign title=center,
+  overlay={\draw[line width=.5mm] ([xshift=8mm]frame.south west)
+    -- ([xshift=8mm]frame.north west);
+    \node[right] at (title.west) {No};},
+  minted style=colorful,
+  minted language=Python,
+  minted options={%
+    linenos=true,
+    fontsize=\footnotesize,
+    numbersep=6mm,
+    texcl=true,
+    breaklines=true,
+    autogobble=true},
+  coltitle=black,
+  #1
+}
+
+% Ability to draw overlay braces on tcolorbox
+% Big thanks for Thomas F. Sturm
+\newcommand{\drawbrace}[5][]{%
+  \draw [decorate,decoration={brace,amplitude=5pt},blue!75!black,line width=1pt]
+    ([xshift=#2,yshift=-3.3mm-#3*12pt]interior.north west)
+    -- ([xshift=#2,yshift=-2.7mm-#4*12pt]interior.north west)
+    node [align=center,right=10pt,midway,circle,draw=blue!50,fill=blue!5,text=black,
+      font=\sffamily\small,#1] {#5};
+}
+
+% Ability to draw overlay line on tcolorbox
+\newcommand{\drawline}[5][]{%
+  \draw [blue!75!black,line width=1pt]
+    ([xshift=#2,yshift=-3mm+6pt-#4*12pt]interior.north west)
+    -- ([xshift=#3,yshift=-3mm+6pt-#4*12pt]interior.north west)
+    node [align=center,right=5pt,circle,draw=blue!50,fill=blue!5,text=black,
+      font=\sffamily\small,#1] {#5};
+}
+
+\definecolor{codebg}{rgb}{0.95,0.95,0.95}
+\renewcommand\theFancyVerbLine{\footnotesize\arabic{FancyVerbLine}}
+
+% -----------------------------------------------------------------
+% Font style
+% -----------------------------------------------------------------
+\usepackage{fontspec} % use custom font
+
+\setmainfont[Path=/home/azzamsya/.local/share/fonts/font-windows/calibri/,
+    BoldItalicFont=calibriz.ttf,
+    BoldFont      =calibrib.ttf,
+    ItalicFont    =calibrii.ttf]{calibri.ttf} % use original calibri font
+
+\setmonofont[Path=/home/azzamsya/.local/share/fonts/font-windows/courier-new/,
+    BoldItalicFont=courbi.ttf,
+    BoldFont      =courbd.ttf,
+    ItalicFont    =couri.ttf]{cour.ttf} % use original courir new font
+
+% -----------------------------------------------------------------
+% Debungging configuration
+% -----------------------------------------------------------------
+%\overfullrule=2cm % show overfull
+%\usepackage{showframe} % show frame margin
+%\renewcommand\ShowFrameLinethickness{0.25pt}
+%\renewcommand*\ShowFrameColor{\color{red}}
+
+
+% -----------------------------------------------------------------
+% Bibliography style
+% -----------------------------------------------------------------
+\input{hangilastyle}
+\addbibresource{daftar-pustaka.bib}
+
+% Needed t % change `and' to `&'&
+\renewcommand*{\finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\&\space}
+
+% Needed to remove space in generated documents if we put comments in
+% source
+\newcommand{\cmmnt}[1]{\ignorespaces}
+
+% -----------------------------------------------------------------
+% Fill your data here
+% -----------------------------------------------------------------
+% title
+\titleskripsi{Sistem Pencegah Plagiarisme Dalam Tugas Mahasiswa dengan
+  \emph{snapshotting} dan \emph{User Activity Logging}}
+% personal data
+\fullname{Azzam Syawqi Aziz}
+\idnum{155150207111132}
+\approvaldate{N/A}
+\degree{N/A}
+\yearsubmit{2019}
+\dept{TEKNIK INFORMATIKA}
+\faculty{FAKULTAS ILMU KOMPUTER}
+\university{universitas brawijaya}
+\city{malang}
+% supervisor data
+\firstsupervisor{Fajar Pradana, S.ST, M.Eng}
+\firstsupervisornip{NIP: 19871121 201504 1 004}
+\secondsupervisor{Dr.Eng. Fitra Abdurrachman Bachtiar, S.T, M.Eng}
+\secondsupervisornip{NIP: 198406282019031006}
+
+
+% -----------------------------------------------------------------
+% And so it begins
+% -----------------------------------------------------------------
+\begin{document}
+
+% -----------------------------------------------------------------
+% Cover
+% -----------------------------------------------------------------
+\cover
+
+% -----------------------------------------------------------------
+% Approval Page
+% -----------------------------------------------------------------
+%\preapprovalpage
+\approvalpage
+
+%-----------------------------------------------------------------
+% PERNYATAAN ORISINALITAS
+%-----------------------------------------------------------------
+{\orisinalitas
+
+  Saya menyatakan dengan sebenar-benarnya bahwa sepanjang pengetahuan
+  saya, di dalam naskah skripsi ini tidak terdapat karya ilmiah yang
+  pernah diajukan oleh orang lain untuk memperoleh gelar akademik di
+  suatu perguruan tinggi, dan tidak terdapat karya atau pendapat yang
+  pernah ditulis atau diterbitkan oleh orang lain, kecuali yang secara
+  tertulis disitasi dalam naskah ini dan disebutkan dalam daftar
+  referensi.
+
+  Apabila ternyata didalam naskah skripsi ini dapat dibuktikan
+  terdapat unsur-unsur plagiasi, saya bersedia skripsi ini digugurkan
+  dan gelar akademik yang telah saya peroleh (sarjana) dibatalkan,
+  serta diproses sesuai dengan peraturan perundang-undangan yang
+  berlaku (UU No. 20 Tahun 2003, Pasal 25 ayat 2 dan Pasal 70).
+  \vspace{1.5cm}
+
+  \noindent
+  \hspace*{8cm}Malang, 2 Juli 2019   \vspace{2.5cm}   \\
+
+  \hspace*{7cm}\underline{Azzam Syawqi Aziz} \\
+  \hspace*{8cm}NIM : 155150207111132
+}
+
+%-----------------------------------------------------------------
+% Disini awal masukan untuk Prakata
+%-----------------------------------------------------------------
+{\preface
+
+  Puji syukur kehadirat Allah SWT yang telah melimpahkan rahmat,
+  taufik dan hidayah-Nya sehingga skirpsi yang berjudul ``SISTEM
+  PENCEGAH PLAGIARISME DALAM TUGAS MAHASISWA DENGAN \emph{SNAPSHOTTING} DAN
+  \emph{USER ACTIVITY LOGGING}'' ini dapat terselesaikan. Dengan selesainya
+  penulisan skirpsi ini, penulis ingin menyampaikan terima kasih
+  kepada:
+
+  \begin{singlespace}
+    \begin{enumerate}
+  \item{Allah SWT yang telah memberikan nikmat kesehatan, kekuatan dan
+      kemudahan sehingga penulis dapat menyelesaikan skripsi ini.}
+  \item{Ustaz, orang tua dan seluruh keluarga besar penulis yang
+      senantiasa mendoakan dan mendukung demi terselesaikannya skripsi
+      ini.}
+  \item{Bapak Fajar Pradana, S.ST, M.Eng, selaku Dosen Pembimbing I
+      yang telah meluangkan waktu untuk membimbing dengan semangat dan
+      sabar sehingga penulis dapat menyelesaikan skripsi ini.}
+  \item{Bapak Dr.Eng. Fitra Abdurrachman Bachtiar, S.T, M.Eng, selaku
+      Dosen Pembimbing II yang telah mengarahkan dan membimbing
+      penulis dengan dengan semangat dan sabar sehingga penulis dapat
+      menyelesaikan skripsi ini.}
+  \item {Bapak Tri Astoto Kurniawan, S.T, M.T, Ph.D dan Bapak Agus
+      Wahyu Widodo, S.T, M.Cs selaku Ketua Jurusan Teknik Informatika
+      dan Kepala Program Studi Teknik Informatika Fakultas Ilmu
+      Komputer, Universitas Brawijaya.}
+  \item{Seluruh pengembang kakas bantu perangkat lunak bebas yang
+      digunakan dalam skripsi ini.}
+  \item{Seluruh civitas akademika Teknik Informatika Universitas
+      Brawijaya yang telah banyak memberi bantuan dan dukungan selama
+      penyelesaian skripsi ini.}
+  \end{enumerate}
+  \end{singlespace}
+
+  Penulis menyadari bahwa dalam penelitian ini masih banyak
+  kekurangan. Oleh karena itu, saran dan kritik yang membangun sangat
+  penulis harapkan. Akhir kata penulis berharap penelitian ini dapat
+  membawa manfaat bagi semua pihak yang menggunakannya.
+
+  \vspace{0.8cm}
+
+  \noindent
+  \hspace*{8cm}Malang, 2 Juli 2019  \vspace{1.5cm} \\
+
+  \hspace*{6.8cm}Penulis \\
+  \hspace*{8cm}azzamsa@student.ub.ac.id
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK INDONESIA
+% -----------------------------------------------------------------
+{\abstractind
+
+  \noindent
+  Plagiarisme merupakan hal yang tak terpisahkan dari lingkungan
+  akademisi. Beragam motivasi termasuk bekerja paruh waktu dan dilema
+  sosial menyumbang tingginya persentase plagiarisme di tingkat
+  universitas. Plagiarisme juga telah menumbangkan karier tokoh-tokoh
+  besar. Penanganan plagiarisme dengan metode \emph{plagiarism
+    detection} memiliki banyak kekurangan seperti timbulnya paradigma
+  polisi-kriminal antara murid dan guru, pola pikir nilai
+  \emph{oriented}, dan beberapa kelemahan teknis lain seperti lemah
+  dalam menganalisis dokumen yang telah diterjemahkan. Hellas,
+  Leinonen, dan Ihantola telah melakukan penelitian plagiarisme dengan
+  metode \emph{plagiarism prevention}, tetapi metode yang dilakukan
+  memiliki beberapa kekurangan, yaitu mengabaikan proses pengerjaan
+  tugas sehingga dapat dicurangi siswa dengan membeli tugas, analisis
+  hanya dilakukan di akhir sehingga siswa dapat berkolaborasi
+  melakukan kecurangan selama tugas dikerjakan, tidak memiliki
+  \emph{log} sehingga guru tidak dapat menilai usaha siswa, dan
+  perangkat lunak yang digunakan terikat dengan \emph{platform}
+  tertentu. Penelitian ini bertujuan untuk menyempurnakan penelitian
+  yang telah dilakukan oleh Hellas, Leinonen, dan Ihantola dengan
+  menambahkan proses \emph{snapshotting} yang merekam seluruh
+  perubahan berkas tugas, dan \emph{user activity logging} yang merekam
+  seluruh aktivitas siswa selama mengerjakan tugas. Sistem yang
+  dibangun juga bersifat \emph{agnostic} sehingga guru memiliki
+  kebebasan memilih bentuk tugas dan siswa bebas menggunakan perangkat
+  lunak disukai untuk mengerjakan tugas. Pengujian sistem dilakukan
+  dengan pengujian unit, integrasi, validasi, \emph{automated testing}, dan
+  pengujian \emph{compatibility}. Pengujian unit dan integrasi bernilai valid dan
+  mencapai nilai di atas 70\% \emph{code coverage}, pengujian
+  validasi pada 34 kasus uji menghasilkan hasil valid, dan
+  pengujian \emph{compatibility} menunjukkan sistem dapat berjalan
+  pada enam \emph{desktop environment} umum. Hasil \emph{automated
+    testing} yang valid dan tidak memiliki galat dapat mempercepat
+  proses pengujian.\\
+
+  \noindent
+  \textbf{Kata kunci}: \emph{plagiarism prevention},
+  \emph{snapshotting}, \emph{user activity logging}
+
+}
+
+% -----------------------------------------------------------------
+% ABSTRAK ENGLSIH
+% -----------------------------------------------------------------
+{\abstracteng
+
+  \noindent
+  Plagiarism is an inseparable thing from an academic environment. Various
+  motivations including working part-time and social dilemmas contribute to the
+  high percentage of plagiarism at the university level. Plagiarism has also
+  toppled the careers of great figures. Handling plagiarism by plagiarism
+  detection the method has many disadvantages such as the emergence of the
+  police-criminal paradigm between students and teachers, value-oriented
+  mindset, and some other technical weaknesses such as inability in analyzing
+  documents that have been translated. Hellas, Leinonen, and Ihantola have done
+  plagiarism research with the plagiarism prevention method, but the method that
+  is carried out has several disadvantages, namely ignoring the work process so
+  that students can be cheated by buying assignments, the analysis is only done
+  at the end so students can collaborate cheating during assignments, no any log
+  produced so the teacher can't assess student effort, and the software used
+  depends on a certain platform. This research aims to perfect the research done
+  by Hellas, Leinonen, and Ihantola by adding the snapshotting process which
+  records all document changes, and user activity logging which records all
+  student activities while working on a task. The system is also agnostic so
+  that the teacher has the freedom to choose the form of assignments and
+  students are free to use the preferred software to work on the task. The
+  system is tested using unit testing, integration, validation, automated
+  testing, and compatibility testing. Unit testing and integration are valid and
+  scored above 70\% code coverage, validation testing in 34 test cases produced
+  valid results, and the compatibility test shows that the system able to run on
+  six general desktop environment. The automated testing result is valid and
+  does not contain errors can speed up the testing process.\\
+
+  \noindent
+  \textbf{Keywords}: \emph{plagiarism prevention},
+  \emph{snapshotting}, \emph{user activity logging}
+
+}
+
+% -----------------------------------------------------------------
+% TOCS
+% -----------------------------------------------------------------
+\tableofcontents
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+% FIXME \listofappendices
+\addcontentsline{toc}{chapter}{DAFTAR LAMPIRAN}
+
+% -----------------------------------------------------------------
+% Chapter
+% -----------------------------------------------------------------
+% change numbering to arabic from bab1
+\selectlanguage{bahasa}\clearpage\pagenumbering{arabic}\setcounter{page}{1}
+
+\include{bab1}
+\include{bab2}
+\include{bab3}
+\include{bab4}
+\include{bab5}
+\include{bab6}
+\include{bab7}
+
+% -----------------------------------------------------------------
+% Bibliography
+% -----------------------------------------------------------------
+% -- \addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\printbibliography[title={DAFTAR PUSTAKA}]
+
+
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: "skripsi"
+%%% TeX-command-extra-options: "-shell-escape"
+%%% ispell-local-dictionary: "id"
+%%% End:

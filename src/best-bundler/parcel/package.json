@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "dev:styles": "parcel watch 'src/styles/main.scss' --dist-dir 'dist/styles' --public-url './' --no-hmr",
+    "dev:scripts": "parcel watch 'src/scripts/main.js' --dist-dir 'dist/scripts' --no-hmr",
+    "dev:app": "npm run dev:styles & npm run dev:scripts & eleventy --serve",
+    "dev": "rm -rf .parcel-cache && rm -rf dist && npm run dev:app",
+    "prod:styles": "parcel build 'src/styles/main.scss' --dist-dir 'dist/styles' --public-url './'",
+    "prod:scripts": "parcel build 'src/scripts/main.js' --dist-dir 'dist/scripts'",
+    "prod:app": "npm run prod:styles && npm run prod:scripts && eleventy",
+    "prod": "rm -rf .parcel-cache && rm -rf dist && NODE_ENV=production npm run prod:app"
+  },
+  "alias": {
+    "@modules/*": "./src/scripts/modules/$1",
+    "@utilities/*": "./src/scripts/utilities/$1"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@parcel/transformer-sass": "^2.0.0-nightly.690",
+    "parcel": "^2.0.0-beta.3.1",
+    "tailwindcss": "^2.1.2"
+  }
+}

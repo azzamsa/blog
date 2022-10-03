@@ -1,0 +1,119 @@
+= Kafka 101: A  gentle  introduction
+Azzam S.A
+:imagesdir: images
+:sectids!:
+:experimental:
+
+== Why?
+image::knot-api.png[,900,900,role=crux]
+
+== !
+image::knot-many.png[,900,900,role=crux]
+
+== !
+image::knot-broker.png[,900,900,role=crux]
+
+== Kafka vs RabbitMQ
+* Message ordering 
+* Message routing
+* Message timing 
+* Message retention
+* Fault handling
+* Scaling
+* Consumer complexity
+- RabbitMQ: smart-broker, dumb-consumer
+- Kafka: dump-broker, smart-consumer
+
+== When to use which
+* RabbitMQ: Command
+* Kafka: Event
+- Package tracking
+- Movie recommendation
+- Surge pricing
+
+== What?: Kafka Component - Bird View
+image::producer-broker-consumer.png[,900,900,role=crux]
+
+== !
+image::kafka-zoom.png[,800,800,role=crux]
+[.credit]
+confluent.io
+
+== !
+image::topic-zoom.png[,600,600,role=crux]
+
+
+== Topic
+* Replication
+* Partition
+* Offset
+* Retention
+* Immutable
+
+== How - Installation
+
+[source,yaml]
+----
+include::listings/docker-compose.yaml[]
+----
+
+== Creating topics
+
+[source,bash]
+----
+include::listings/create-topics.sh[]
+----
+
+== Producing messages
+
+[source,bash]
+----
+include::listings/produce-messages.sh[]
+----
+
+== Consuming messages
+
+[source,bash]
+----
+include::listings/consume-messages.sh[]
+----
+
+== Consumer
+* Consumer Group
+* Load balance
+* Reliability
+
+== More
+
+[source,bash]
+----
+include::listings/more.sh[]
+----
+
+== Python
+
+[.compact]
+[source,python]
+----
+include::listings/kafka.py[]
+----
+
+[.inverse.segue.badge-right.badge-bottom]
+== !
+[quote.tada,Franz Kafka]
+Paths are made by walking.
+
+[.closing.segue.badge-right]
+== Thank You!
+
+[horizontal.contact]
+twitter:: @azzamsyawqi
+www:: azzamsa.com
+
+
+[.inverse.subject]
+== !
+image::company-logo-inverse.svg[,422,96,role=logo crux]
+
+== Credits
+* excalidraw.com

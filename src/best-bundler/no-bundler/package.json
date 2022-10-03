@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "dev:sass": "sass src/styles/main.scss tmp/main.css",
+    "dev:styles": "postcss --config postcss.config.js tmp/main.css --output dist/styles/main.css",
+    "dev:scripts": "./build.js",
+    "dev": "npm run dev:sass && npm run dev:styles && npm run dev:scripts && eleventy --serve",
+    "dev-watch": "npx nodemon --watch src -x 'npm run dev'",
+    "prod:scripts": "NODE_ENV=production ./build.js",
+    "prod:styles": "postcss --config postcss.config.js tmp/main.css --output dist/styles/main.css --env production",
+    "prod": "npm run dev:sass && npm run prod:styles && npm run prod:scripts && NODE_ENV=production eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^5.0.3",
+    "esbuild": "^0.12.1",
+    "nodemon": "^2.0.7",
+    "postcss-cli": "^8.3.1",
+    "sass": "^1.33.0",
+    "tailwindcss": "^2.1.2"
+  }
+}

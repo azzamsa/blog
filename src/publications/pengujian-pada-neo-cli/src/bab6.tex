@@ -1,0 +1,68 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BAB 6
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mychapter{6}{BAB 6 PENUTUP}
+
+\section{Kesimpulan}
+
+Berdasarkan proses pembangunan pengujian yang di dalamnya
+terdapat tahapan seperti analisis kebutuhan pengujian, dan
+perancangan dan implementasi kasus uji. Dapat disimpulkan bahwa:
+
+\begin{enumerate}
+\item Nilai cakupan pengujian tidak dipatok dengan nilai umum
+  80\%-85\%. Hal ini disebabkan karena nilai tersebut tidak akan
+  mungkin dicapai dengan keberadaan modul-modul yang tidak mendukung
+  proses pengujian.
+\item Beberapa modul dengan \emph{cyclomatic complexity} yang tinggi
+  menyulitkan proses pengujian. Sudah selayaknya dilakukan
+  \emph{refactoring} pada modul-modul tersebut.
+\item Pengujian harus dilakukan secara terisolasi. Oleh karena itu,
+  dilakukan \emph{mock} pada bagian lain di luar sesi pengujian
+  tersebut.
+\item \emph{Test script} untuk \emph{automated testing} dapat
+  melakukan pengujian secara otomatis. Hal ini dapat mempercepat proses
+  pengujian.
+\item Penggunaan teknik \emph{basis path testing} memberikan batas
+  \emph{path} yang akan diuji. \emph{Path} yang terbatas memberikan
+  tolak ukur selesainya pengujian. Berbeda dengan \emph{rigorous
+    testing} yang berusaha menguji banyak \emph{path} dan tidak
+  memiliki tolak ukur jelas tentang ukuran selesainya sebuah
+  pengujian.
+\item Penggunaan teknik \emph{equivalence partitioning} dan
+  \emph{boundary value analysis} memberikan batasan masukan untuk
+  pengujian. Dengan teknik tersebut pengujian dapat dilakukan dengan
+  data masukan yang sangkil (efisien). Tidak dengan data masukan yang sembarang.
+\end{enumerate}
+
+\section{Saran}
+
+Banyak modul yang memiliki nilai \emph{cyclomatic complexity} yang
+tinggi sehingga membutuhkan \emph{refactoring}. Modul-modul lain yang
+berhubungan dengan dunia luar (\emph{outside world}) selayaknya
+diproses dengan \emph{mock} dan tidak menggunakan \emph{resource} yang
+sebenarnya. Penggunaan \emph{resource} asli (tanpa \emph{mock}) hanya
+akan menyulitkan proses pengujian. Oleh karena itu, diharapkan agar
+semua modul yang berhubungan dengan dunia luar untuk diuji menggunakan
+\emph{mock}.
+
+\section{Keberlanjutan}
+
+Proses pengujian ini akan dilanjutkan dengan membuat \emph{mock} pada
+modul-modul lain yang berhubungan dengan dunia luar (\emph{outside
+  world}). \emph{Refactoring} juga akan dilakukan pada modul-modul
+dengan \emph{cyclomatic complexity} yang tinggi. \emph{Automated
+  testing} nantinya hanya akan dilakukan pada pengujian \emph{unit}
+dan \emph{integration}. Hal-hal yang memudahkan proses pengujian juga
+akan ditambahkan, seperti proses \emph{code review} menggunakan
+\emph{gerrit}. Tata pelaksanaan \emph{pull request} akan diketatkan
+pada bagian \emph{code style guide}, dalam hal ini yaitu penggunaan
+\emph{PEP8}.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "pkl"
+%%% End:

@@ -1,0 +1,33 @@
+image: alpine/3.13
+
+packages:
+  - nodejs
+  - npm
+
+sources:
+  - https://git.sr.ht/~azzamsa/best-bundler
+
+environment:
+  project: best-bundler
+
+tasks:
+  - no-bundler: |
+      cd ${project}
+
+      cd no-bundler
+      npm install
+      npm run prod
+
+  - parcel: |
+      cd ${project}
+
+      cd parcel
+      npm install
+      npm run prod
+
+  - snowpack: |
+      cd ${project}
+
+      cd parcel
+      npm install
+      npm run prod

@@ -1,0 +1,82 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BAB 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mychapter{7}{BAB 7 PENUTUP}
+
+\section{Kesimpulan}
+
+Kesimpulan dari hasil penelitian yang dilakukan adalah sebagai berikut:
+
+\begin{enumerate}
+\item Pada tahapan rekayasa kebutuhan didapatkan 2 aktor utama, 2
+  kebutuhan fungsional untuk sistem \emph{Lup Recoder} dan 10
+  kebutuhan fungsional untuk sistem \emph{Lup Viewer}. Dua aktor
+  utama yang terlibat di dalam sistem adalah dosen dan
+  mahasiswa. Kebutuhan utama sistem adalah merekam berkas tugas,
+  merekam aktivitas siswa, dan memiliki sifat \emph{platform
+    agnostic}. Kedua sistem memiliki satu kebutuhan non-fungsional
+  yaitu \emph{compatibility}. Kedua sistem harus \emph{compatible}
+  dengan enam \emph{desktop environment} utama pada sistem operasi
+  \emph{GNU/Linux}.
+
+\item Pada tahapan perancangan didapatkan pemodelan \emph{class
+    diagram} yang terdiri dari 6 \emph{class} pada sistem \emph{Lup
+    Recorder} dan 12 \emph{class} pada sistem \emph{Lup Viewer}, serta
+  tiga sampel pemodelan \emph{sequence diagram}. Hasil dari tahapan
+  perancangan diimplementasikan dalam bentuk \emph{working code}
+  dengan bahasa pemrograman \emph{Python}, dan antarmuka sistem
+  diimplementasikan dengan bantuan \emph{widget toolkit} \emph{Qt}.
+
+\item Terdapat lima pengujian yang dilakukan, yaitu pengujian unit,
+  pengujian integrasi, pengujian validasi, \emph{automated testing}, dan pengujian
+  \emph{compatibility}. Pengujian unit
+  dilakukan dengan metode \emph{white-box testing} dan teknik
+  \emph{basis path testing}, pengujian integrasi dilakukan dengan
+  pendekatan \emph{use-based testing} menggunakan metode
+  \emph{white-box testing} dan teknik \emph{basis path testing},
+  pengujian validasi dilakukan dengan metode \emph{black-box testing}
+  dengan pemilihan nilai \emph{input} menggunakan teknik \emph{boundary
+    value analysis} dan \emph{equivalence partitioning}, \emph{automated
+    testing} dilakukan dengan menggunakan bantuan kakas bantu \emph{Pytest} dan
+  \emph{Gitlab-CI}, dan pengujian
+  \emph{compatibility} dilakukan dengan menjalankan sistem pada enam
+  \emph{desktop environment} pada sistem operasi \emph{GNU/Linux}.
+  Pengujian unit dan
+  integrasi yang dilakukan telah mencapai lebih dari 70\%
+  \emph{code coverage} sehingga bisa dipastikan semua \emph{path}
+  utama selesai diuji. Pengujian validasi dilakukan terhadap seluruh
+  \emph{use case scenario} sehingga bisa dipastikan bahwa sistem yang
+  dibangun memenuhi seluruh kebutuhan yang didefinisikan. \emph{Automated
+    testing} dijalankan tanpa menghasilkan galat sehingga pengujian
+  dapat dilakukan dengan otomatis dan memangkas waktu pengujian. Pengujian
+  \emph{compatibility} telah memastikan sistem berjalan dengan baik
+  pada enam \emph{desktop environment} berbeda.
+\end{enumerate}
+
+\section{Saran}
+
+Saran untuk penelitian selanjutnya adalah sebagai berikut:
+
+\begin{enumerate}
+\item Aplikasi pencegah plagiarisme dengan menggunakan metode
+  \emph{snapshotting} dan \emph{user activity logging} menyimpan semua
+  data rekaman secara lokal. Maka terdapat kemungkinan adanya
+  manipulasi data rekaman oleh mahasiswa yang memahami struktur data
+  rekaman sistem. Saran untuk penelitian selanjutnya adalah dengan
+  tidak menyimpan data secara lokal, melainkan dikirim dan disimpan
+  langsung pada penyimpanan \emph{server}.
+
+\item Sistem operasi yang didukung dapat ditambah dengan melakukan
+  \emph{porting} modul perekam pada sistem ke sistem operasi lain
+  seperti sistem operasi \emph{Microsoft Windows} dan \emph{Apple
+    Macintosh}.
+\end{enumerate}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: "skripsi"
+%%% ispell-local-dictionary: "id"
+%%% End:

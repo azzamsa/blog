@@ -1,0 +1,75 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BAB 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mychapter{5}{BAB 5 HASIL DAN PEMBAHASAN}
+
+\section{Analisis Kebutuhan Pengujian}
+
+Hasil pada tahapan ini berupa daftar \emph{method} yang akan
+diuji. Daftar tersebut ditentukan oleh pembimbing lapangan dengan
+beberapa pertimbangan, antra lain terbatasnya waktu praktik kerja
+lapangan. Daftar \emph{method} yang akan diuji terlihat pada Tabel
+\ref{tab:method-yang-diuji}
+
+\input{bab5-tabel-method}
+
+\section{Perancangan dan Implementasi Kasus Uji}
+
+\input{bab5-perancangan-tc}
+
+\subsection{Pengaturan Lingkungan Pengujian untuk \emph{Automated Testing}}
+
+Pengaturan lingkuan pengujian untuk \emph{automated testing} diatur
+dengan konfigurasi seperti terlihat pada Tabel
+Kode~\ref{code:travis-config}. \emph{Automated testing} dilakukan
+dengan bantuan perangkat lunak \emph{travis-ci}. Terlihat pada Gambar
+\ref{fig:travis-head2} pengujian otomatis yang dilakukan oleh \emph{travis-ci} berhasil.
+
+\begin{code}
+\begin{ignasicblock}[title=config.yml,minted language=text]
+language: python
+python:
+- '3.6'
+install:
+- pip install -r requirements.txt
+- pip install -e .
+- pip install coverage pytest pytest-cov pytest-ordering testfixtures
+- pip freeze --local
+script:
+- pytest --cov=neo -vv -s
+before_install:
+- mv tests/.test.env $HOME/.neo.env
+- rm -rfv tests/.deploy
+\end{ignasicblock}
+  \captionof{listing}{\emph{Test Environment Configuration}}
+  \label{code:travis-config}
+\end{code}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\linewidth]{img/travis-head}
+  \caption{\emph{Travis-ci} melaporan status pengujian}
+  \label{fig:travis-head2}
+\end{figure}
+
+\subsection{Hasil Cakupan Pengujian}
+
+Perhitugan cakupan pengujian menggunakan kakas bantu
+\emph{coverage.py}. Terlihat presentase cakupan dalam Gambar
+\ref{fig:test-akhir}. Status hasil pengujian juga dapat dilihat pada
+gambar \ref{fig:test-akhir}.  \emph{PASSED} menandakan pengujian yang
+dilakukan berhasil dan \emph{FAILED} menyatakan pengujian yang
+dilakukan gagal.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.99\linewidth]{img/test-akhir}
+  \caption{Hasil cakupan pengujian}
+  \label{fig:test-akhir}
+\end{figure}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "pkl"
+%%% End:

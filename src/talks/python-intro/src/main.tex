@@ -1,0 +1,166 @@
+\input{preamble.tex}
+\input{title.tex}
+\newfontfamily\DejaSans{DejaVu Sans}
+
+\begin{document}
+
+\maketitle
+
+\section{Yak Shaving}
+
+\subsection{Install}
+
+\begin{xframe}{Installing Python on Windows}
+  % You need a \hl{style/images} directory
+  \begin{center}
+    {\huge Get the installer from} \\
+    \href{https://www.python.org/downloads/windows/}{python.org/downloads/windows/}
+  \end{center}
+\end{xframe}
+
+\begin{xframe}{Installing Python on GNU/Linux}
+  \begin{center}
+    \huge It's already installed {\DejaSans 😎}
+  \end{center}
+\end{xframe}
+
+\subsection{Setup}
+\label{subsec:label}
+
+\begin{xframe}{Setup}
+  \begin{center}
+    \huge SETUP
+  \end{center}
+\end{xframe}
+
+
+\section{Basic}
+
+\subsection{Printing}
+
+\begin{xframe}{Printing}
+
+  % \begin{minted}[mathescape,
+  % linenos,
+  % numbersep=5pt,
+  % gobble=2,
+  % frame=lines,
+  % framesep=2mm]{python}
+  % print ''Hallo Pondok Mahasiswa`'
+  % \end{minted}
+
+
+\begin{minted}[linenos,frame=lines]{python}
+print "Hallo, Pondok Mahasiswa"
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Comment}
+\begin{minted}[linenos,frame=lines]{python}
+print "Hallo Pondok Mahasiswa"
+# I am comment :)
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Math}
+\begin{minted}[linenos,frame=lines]{python}
+print 10 + 2 - 3 / 6 * 7
+# more %, <, >, <=, >=
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Variables \& More Printing}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+nama = "Budi"
+umur = 10
+tinggi_badan = 30
+berat_badan = 50.2
+
+print "umur saya :", umur
+print "nama saya : %s" % nama
+print "saya %s, umur saya %d tahun, berat badan saya %0.2f" % (nama, umur, berat_badan)
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Function}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+def penjumlahan(x, y):
+    print "hasil penjumlahan : %d" % (x + y)
+
+penjumlahan(2, 3)
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Function \& Return Value}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+def penjumlahan(x, y):
+    return x + y
+
+def perkalian(x, y):
+    return x * y
+
+hasil_jumlah = penjumlahan(2, 3)
+hasil_kali = perkalian(10, 2)
+
+print "Hasil penjumlahan : %d dan Hasil perkalian : %d " % (hasil_jumlah, hasil_kali)
+\end{minted}
+\end{xframe}
+
+
+\begin{xframe}{Prompting}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+nama = raw_input("siapa nama anda ?")
+umur = int(raw_input("berapa umur anda ?"))
+
+print "Hai, %s. Anda berumur %d tahun" % (nama, umur)
+# what is int(), str(), .. ?
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Make Decision}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+def hitung_jarak(km):
+    if km > 50:
+        print "sangat jauh"
+    elif km == 50:
+        print "cukup jauh"
+    elif km == 30:
+        print "sedang"
+    else:
+        print "dekat"
+
+hitung_jarak(10)
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Loop \& List}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+santri = ["ahmad", "imam", "umar", "ali"]
+
+for anak in santri:
+    print "nama santri %s" % anak
+
+# what about while-loop ?
+\end{minted}
+\end{xframe}
+
+\begin{xframe}{Dictionary}
+\begin{minted}[linenos,frame=lines,breaklines]{python}
+data_santri = {'nama': 'ahmad', 'umur': 40, 'tinggi_badan': 10+10}
+
+print data_santri['nama']
+print data_santri['umur']
+print data_santri['tinggi_badan']
+\end{minted}
+\end{xframe}
+
+\begin{xframe}
+\begin{center}
+  {\huge It's just \emph{gentle} introduction} \\
+  keep learning.
+  \end{center}
+\end{xframe}
+
+\section{Question ?}
+
+\end{document}
